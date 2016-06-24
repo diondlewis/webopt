@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# 2016-06-24 v1.0.0
+
+css/style.min.css
+img/pizzeria.jpg
+img/profilepic.jpg
+js/perfmatters.js
+
+NETWORK:
+login.asp
+
+FALLBACK:
+/html/ /offline.html
