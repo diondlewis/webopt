@@ -5,10 +5,9 @@ To visit the hosted GitHub page navigate to http://diondlewis.github.io/webopt/.
 
 
 ##PageSpeed Score
+index.html achieves a PageSpeed score of at least 90 for Mobile and Desktop.
 
-I have optimized index.html to achieve at least a 90 PageSpeed score.
-
-#### Critical Rendering Path - index.html achieves a PageSpeed score of at least 90 for Mobile and Desktop:
+#### Critical Rendering Path:
 
 * Used Adobe Photoshop to resize and compress pizzaria.jpg
 * Add a media query for print.css
@@ -18,8 +17,9 @@ I have optimized index.html to achieve at least a 90 PageSpeed score.
 * Move Javascript tags to the bottom of the body
 
 ##Getting Rid of Jank
+Optimizations made to views/js/main.js make views/pizza.html render with a consistent frame-rate at 60fps when scrolling.
 
-#### Frame Rate - Optimizations made to views/js/main.js make views/pizza.html render with a consistent frame-rate at 60fps when scrolling:
+#### Frame Rate:
 
 * Move all constants out of the for loop in updatePositions
 * Move the Math.sin calculation out for the for loop in updatePositions
@@ -36,7 +36,8 @@ I have optimized index.html to achieve at least a 90 PageSpeed score.
 * Replace animationReady check with updatePositions in this event listener: window.addEventListener('scroll', updatePositions);
 * Calculate number of pizzas based on window size
 
-#### Computational Efficiency - Time to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page. Resize time is shown in the browser developer tools:
+#### Computational Efficiency:
+Time to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page. Resize time is shown in the browser developer tools
 
 * Optimize Time to Resize Pizzas in pizza.html
 * Made the following changes to changePizzaSizes:
