@@ -37,7 +37,7 @@ Optimizations made to views/js/main.js make views/pizza.html render with a consi
 * Calculate number of pizzas based on window size
 
 #### Computational Efficiency:
-Time to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page. Resize time is shown in the browser developer tools
+Time to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page. Resize time is shown in the browser developer tools.
 
 * Optimize Time to Resize Pizzas in pizza.html
 * Made the following changes to changePizzaSizes:
