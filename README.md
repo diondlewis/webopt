@@ -1,55 +1,59 @@
-## Website Performance Optimization portfolio project
+# Website Performance Optimization
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+To visit the hosted GitHub page navigate to http://diondlewis.github.io/webopt/. You can also download the project at https://github.com/diondlewis/webopt by cloning the prepository to your computer using Git or downloading the zip file.
 
-To get started, check out the repository and inspect the code.
 
-### Getting started
 
-####Part 1: Optimize PageSpeed Insights score for index.html
+##PageSpeed Score
+index.html achieves a PageSpeed score of at least 90 for Mobile and Desktop.
 
-Some useful tips to help you get started:
+#### Critical Rendering Path:
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+* Used Adobe Photoshop to resize and compress pizzaria.jpg
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+* Add a media query for print.css
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
+* Minify CSS at https://cssminifier.com/
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ./ngrok http 8080
-  ```
+* Minify JavaScript at https://javascript-minifier.com/
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+* Make JavaScropt async
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+* Move Javascript tags to the bottom of the body
 
-####Part 2: Optimize Frames per Second in pizza.html
+##Getting Rid of Jank
+Optimizations made to views/js/main.js make views/pizza.html render with a consistent frame-rate at 60fps when scrolling.
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+#### Frame Rate:
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+* Move all constants and the Math.sin calculation out of the for loop in the updatePositions function
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+* Move variable items = document.getElementsByClassName() to the anonymous function at the bottom of the file to stop updatePositions from re-defining items on every scroll event on line 585
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
+* Set number of pizzas to 36 in document.addEventListener('DOMContentLoaded', function() on line 562
 
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+* Replace "querySelector" with getElementById on line 564
+
+* Change from document.querySelector to document.getElementById in variable windowwidth inside of function determineDx on line 429
+
+* Set variable phase outside the for loop on line 537 to prevent it from being created during each iteration
+
+* Set variable elem outside the loop on line 564 to prevent it being created each iteration
+
+* Move variable movingPizzas outside the for loop to prevent a DOM call during each loop
+
+* Use a transform on line 572 instead of window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+
+* Calculate number of pizzas based on window size
+
+#### Computational Efficiency:
+Time to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page. Resize time is shown in the browser developer tools.
+
+* Move document.querySelectorAll(".randomPizzaContainer") outside of the for loop
+
+* Change to use a switch to set width of pizzas to eliminate Forced Synchronous Layout and eliminate using the function determineDx for pizza widths
+
+* Replace document.querySelectorAll with document.getElementsByClassName
+
+* Move randomPizzas.length to a local variable so that the length of the array doesn't have to be accessed during each loop
+
